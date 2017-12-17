@@ -1,0 +1,19 @@
+{
+  "CHS": {
+    "SELECT_SRC": "选择文件",
+    "START": "开始",
+    "RESET": "重置",
+    "EXIT": "退出",
+    "SRC_FILE": "缓存文件",
+    "DST_PATH": "输出目录",
+    "DST_NAME": "输出文件名",
+    "DEFAULT_PATH": "使用缓存文件目录",
+    "DEFAULT_NAME": "使用缓存文件名",
+    "TITLE": "网易云音乐缓存解码v1.1",
+    "SRC_EMPTY_ERR": "请指定源文件",
+    "DSTPATH_EMPTY_ERR": "请指定目标路径",
+    "DSTNAME_EMPTY_ERR": "请指定目标文件名",
+    "ERR": "错误",
+    "SUCCESS": "转换成功"
+  }
+}
