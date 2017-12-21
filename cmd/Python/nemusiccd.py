@@ -21,9 +21,14 @@ def decode(origin_filepath, result_filepath):
     print("Source file length: %s" % len(music))
     music_decode = bytearray()
     for i, byte in enumerate(music):
-        print("\rProgress: %d%%" % (round((i + 1) * 100 / len(music)))),
-        music_decode.append(int(byte.encode('hex'), 16) ^ CODE)
+        sys.stdout.write("\rProgress: %d%%" % (round((i + 1) * 100 / len(music))))
+        sys.stdout.flush()
+        if type(byte) == str: # For Python 2
+            music_decode.append(int(byte.encode("hex"), 16) ^ CODE)
+        else: # For Python 3
+            music_decode.append(byte ^ CODE)
 
+    print()
     fout.write(music_decode)
     fin.close()
     fout.close()

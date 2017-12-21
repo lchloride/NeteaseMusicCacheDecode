@@ -7,6 +7,7 @@ import json
 
 title_str = "tk"
 CODE = 0xA3
+MAX = 100
 
 
 class Application(Frame):
@@ -35,13 +36,17 @@ class Application(Frame):
                                         variable=self.default_name, command=self.default_name_callback)
         default_name_cbtn.grid(row=2, column=3, padx=5, pady=5)
 
-        reset_btn = Button(self, text=self.labeltable["CHS"]["RESET"], command=self.reset_callback)
-        start_btn = Button(self, text=self.labeltable["CHS"]["START"], command=self.start_callback)
-        exit_btn = Button(self, text=self.labeltable["CHS"]["EXIT"], command=self.exit_callback)
+        self.reset_btn = reset_btn = Button(self, text=self.labeltable["CHS"]["RESET"], command=self.reset_callback)
+        self.start_btn = start_btn = Button(self, text=self.labeltable["CHS"]["START"], command=self.start_callback)
+        self.exit_btn = exit_btn = Button(self, text=self.labeltable["CHS"]["EXIT"], command=self.exit_callback)
 
         reset_btn.grid(row=3, column=1, padx=5, pady=5)
         start_btn.grid(row=3, column=2, padx=5, pady=5)
         exit_btn.grid(row=3, column=3, padx=5, pady=5)
+
+        self.progressbar = ttk.Progressbar(self, variable=self.progress, maximum=MAX,
+                                           length=self.winfo_width()-10)
+        self.progressbar.grid(row=4, column=0, columnspan=4, padx=5, pady=5)
 
     def __init__(self, master=None):
         global title_str
@@ -57,6 +62,11 @@ class Application(Frame):
         self.dst_name = StringVar()
         self.dst_path_entry = None
         self.dst_name_entry = None
+        self.progressbar = None
+        self.progress = DoubleVar()
+        self.reset_btn = None
+        self.start_btn = None
+        self.exit_btn = None
         self.pack()
         self.createWidgets()
 
@@ -93,11 +103,17 @@ class Application(Frame):
         self.quit()
 
     def start_callback(self):
+        self.reset_btn.config(state=DISABLED)
+        self.start_btn.config(state=DISABLED)
+        self.exit_btn.config(state=DISABLED)
         src = self.src_pathname.get()
         default_path = self.default_path.get()
         default_name = self.default_name.get()
         if len(src) == 0:
             tkMessageBox.showerror(self.labeltable["CHS"]["TITLE"], self.labeltable["CHS"]["SRC_EMPTY_ERR"])
+            self.reset_btn.config(state=NORMAL)
+            self.start_btn.config(state=NORMAL)
+            self.exit_btn.config(state=NORMAL)
             return
 
         last_sep = src.rfind(os.path.sep)
@@ -108,6 +124,9 @@ class Application(Frame):
             if len(dst_path) == 0:
                 tkMessageBox.showerror(self.labeltable["CHS"]["TITLE"],
                                        self.labeltable["CHS"]["DSTPATH_EMPTY_ERR"])
+                self.reset_btn.config(state=NORMAL)
+                self.start_btn.config(state=NORMAL)
+                self.exit_btn.config(state=NORMAL)
                 return
             dst_path += os.path.sep if dst_path[-1] != os.path.sep else ""
 
@@ -122,6 +141,9 @@ class Application(Frame):
             dest += ".mp3" if dest[-4:] != ".mp3" else ""
 
         rs = self.decode(src, dest)
+        self.reset_btn.config(state=NORMAL)
+        self.start_btn.config(state=NORMAL)
+        self.exit_btn.config(state=NORMAL)
         if rs is None:
             tkMessageBox.showinfo(self.labeltable["CHS"]["TITLE"], self.labeltable["CHS"]["SUCCESS"])
         else:
@@ -141,12 +163,17 @@ class Application(Frame):
             return str(e)
 
         music = fin.read()
-        print("Source file length: %s" % len(music))
+        music_length = len(music)
+        print("Source file length: %s" % music_length)
         music_decode = bytearray()
         for i, byte in enumerate(music):
-            print("\rProgress: %d%%" % (round((i + 1) * 100 / len(music)))),
             music_decode.append(int(byte.encode('hex'), 16) ^ CODE)
-
+            progress = (i+1) * 100
+            if progress % music_length == 0:
+                print("\rProgress: %d%% %d" % (progress / music_length, i)),
+                self.progress.set(progress / music_length)
+                self.progressbar.update()
+        print()
         fout.write(music_decode)
         fin.close()
         fout.close()
@@ -156,5 +183,8 @@ root = Tk()
 app = Application(master=root)
 app.master.title(title_str)
 app.master.maxsize(960, 360)
+root.update()
+print(root.winfo_width(), root.winfo_reqwidth(), root.winfo_screenwidth(), root.winfo_geometry())
+app.progressbar.config(length=root.winfo_reqwidth()-10)
 app.mainloop()
 # root.destroy()
