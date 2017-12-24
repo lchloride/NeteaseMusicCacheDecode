@@ -8,9 +8,9 @@
 
 ## 已开发版本
 
-- Windows图形化 v1.1_winmfc(更新于 东部标准时间 2017年10月13日)
+- Windows图形化 v2.0_winmfc(更新于 东部标准时间 2017年12月23日)
 
-> [文档地址](https://github.com/lchloride/NeteaseMusicCacheDecode/blob/master/gui/Windows_MFC/readme.txt)
+> [文档地址](https://github.com/lchloride/NeteaseMusicCacheDecode/blob/master/gui/Windows_MFC/readme.md)
 
 - Python命令行 v1.2_pycmd (更新于 东部标准时间 2017年12月20日)
 
@@ -22,7 +22,7 @@
 
 - Python图形化界面，以满足MacOSX和Ubuntu等*nix系统
 
-- 添加批量转换功能
+- 添加自动获取音乐名功能
 
 ## 声明
 本程序为免费程序，分享请注明出处，尊重开发者劳动。本程序传播过程中造成的任何形式的后果与开发者无关。

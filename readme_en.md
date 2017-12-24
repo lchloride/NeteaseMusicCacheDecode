@@ -9,9 +9,9 @@
 
 ## Developed Versions
 
-- MFC(with GUI) for Windows: v1.1_winmfc(Built on October 13, 2017 EST)
+- MFC(with GUI) for Windows: v2.0_winmfc(Built on December 23, 2017 EST)
 
-> [References(Chinese simplified)](https://github.com/lchloride/NeteaseMusicCacheDecode/blob/master/gui/Windows_MFC/readme.txt)
+> [References(Chinese simplified)](https://github.com/lchloride/NeteaseMusicCacheDecode/blob/master/gui/Windows_MFC/readme.md)
 
 - Command line tool by Python: v1.2_pycmd (Updated on December 20, 2017 EST)
 
@@ -23,7 +23,7 @@
 
 - GUI by Python, mainly designed for MacOSX and Ubuntu
 
-- Batch processing
+- Fetch filename automatically
 
 ## Announcement
 This project is free to obtain. Please assign the link of project to your sharing content.
