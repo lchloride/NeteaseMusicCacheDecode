@@ -4,7 +4,8 @@
 
 ## Intro
 
-- Convert cache file of uc! format to music file of mp3 format。
+- Convert cache file of uc! format to music file of mp3 format
+
 - Provide multiple implementations under different programming languages
 
 ## Developed Versions
@@ -21,9 +22,9 @@
 
 ## Plans
 
-- GUI by Python, mainly designed for MacOSX and Ubuntu
+- Web version for maximum compatibility among OS and devices
 
-- Fetch filename automatically
+- ~~GUI by Python, mainly designed for MacOSX and Ubuntu(Terminated)~~
 
 ## Announcement
 This project is free to obtain. Please assign the link of project to your sharing content.

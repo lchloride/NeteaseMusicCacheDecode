@@ -29,6 +29,7 @@ def decode(origin_filepath, result_filepath):
             music_decode.append(byte ^ CODE)
 
     print()
+    # /Users/lichenghong/Desktop/437292573-_-_320-_-_a198a055f5a79a1a30af1d56fbfd7cea.uc!
     fout.write(music_decode)
     fin.close()
     fout.close()
