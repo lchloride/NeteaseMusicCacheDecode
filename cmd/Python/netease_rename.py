@@ -37,6 +37,9 @@ def detect_netease_music_name(file_path, dist_path):
         os.mkdir(dist_path)
 
     for file_name in os.listdir(file_path):
+        if not file_name.endswith('.mp3'):
+            continue
+
         try:
             song_id = file_name.split("-")[0]
             url_target = url_base.format(song_id, song_id)
