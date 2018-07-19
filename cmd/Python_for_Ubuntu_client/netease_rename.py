@@ -23,7 +23,7 @@ import eyed3
 import shutil
 
 
-def detect_netease_music_name(file_path, dist_path):
+def detect_netease_music_name(file_path, dist_path, KEEP_SOURCE=True):
     """
     Rename Netease mp3 files name
     From: file_path/<song id>-<bite rate>-<random number>.mp3
@@ -87,8 +87,11 @@ def detect_netease_music_name(file_path, dist_path):
             )
             + ".mp3"
         )
-        # os.rename(os.path.join(file_path, file_name), dist_name)
-        shutil.copyfile(os.path.join(file_path, file_name), dist_name)
+        
+        if KEEP_SOURCE == True:
+            shutil.copyfile(os.path.join(file_path, file_name), dist_name)
+        else:
+            os.rename(os.path.join(file_path, file_name), dist_name)
 
 
 def parse_arguments(argv):
