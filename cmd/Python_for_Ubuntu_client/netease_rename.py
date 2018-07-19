@@ -3,11 +3,11 @@
 http://music.163.com/song/media/outer/url?id={Song id}.mp3
 
 # Music detail
-http://music.163.com/api/song/detail/?id={Music id}&ids=[{Song id}]
+http://music.163.com/api/song/detail/?id={Song id}&ids=[{Song id}]
 
 # Function
 Rename Netease mp3 files name
-From: source path/<song id>-<bite size>-<random number>.mp3
+From: source path/<song id>-<bite rate>-<random number>.mp3
 To: dist path/<artist name> - <song title>.mp3
 
 Default source path: $HOME/.cache/netease-cloud-music/CachedSongs
@@ -20,12 +20,13 @@ import os
 import sys
 import argparse
 import eyed3
+import shutil
 
 
 def detect_netease_music_name(file_path, dist_path):
     """
     Rename Netease mp3 files name
-    From: file_path/<song id>-<bite size>-<random number>.mp3
+    From: file_path/<song id>-<bite rate>-<random number>.mp3
     To: dist_path/<artist name> - <song title>.mp3
     """
     headers = {
@@ -37,7 +38,13 @@ def detect_netease_music_name(file_path, dist_path):
         os.mkdir(dist_path)
 
     for file_name in os.listdir(file_path):
-        if not file_name.endswith('.mp3'):
+        if not file_name.endswith(".mp3"):
+            continue
+        if not len(file_name.split("-")) == 3:
+            print(
+                ">>>> File %s not in format <song id>-<bite rate>-<random number>.mp3"
+                % (file_name)
+            )
             continue
 
         try:
@@ -67,18 +74,21 @@ def detect_netease_music_name(file_path, dist_path):
                 ">>>> UnicodeEncodeError, try again later: file_name = %s, error = %s"
                 % (file_name, str(e))
             )
+            continue
         except:
             print(">>>> Some other error happens: file_name = %s" % (file_name))
-        finally:
-            dist_name = (
-                os.path.join(
-                    dist_path,
-                    "%s - %s"
-                    % (tt.tag.artist.replace("/", " "), tt.tag.title.replace("/", " ")),
-                )
-                + ".mp3"
+            continue
+
+        dist_name = (
+            os.path.join(
+                dist_path,
+                "%s - %s"
+                % (tt.tag.artist.replace("/", " "), tt.tag.title.replace("/", " ")),
             )
-            os.rename(os.path.join(file_path, file_name), dist_name)
+            + ".mp3"
+        )
+        # os.rename(os.path.join(file_path, file_name), dist_name)
+        shutil.copyfile(os.path.join(file_path, file_name), dist_name)
 
 
 def parse_arguments(argv):
