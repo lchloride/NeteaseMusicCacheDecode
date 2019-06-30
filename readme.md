@@ -6,13 +6,27 @@
 
 将网易云音乐的uc!缓存文件转换成mp3音乐文件。提供多种运行程序以满足不同环境的需求。
 
+**最新的桌面版App具有Windows和macOS两个版本，macOS上可以使用图形化界面解码了。**
+
 **最新的Web测试版可以根据歌曲ID获取音乐元数据(歌手名、专辑名、封面图片)并写入音乐文件中。**
 
 **项目仅用于技术交流，希望大家多支持正版音乐！**
 
 ## 已开发版本
 
-- Windows图形化 v2.0_winmfc(更新于 东部标准时间 2017年12月23日)
+- Windows&macOS图形化 v3.1.0 beta(更新于 北京时间 2019年6月30日)
+
+> [项目地址](https://github.com/lchloride/NeteaseMusicCacheDecoder)
+
+> [简体中文文档地址](https://github.com/lchloride/NeteaseMusicCacheDecoder/blob/master/readme.md)
+
+> [Windows最新版本下载](https://github.com/lchloride/NeteaseMusicCacheDecoder/releases/download/v3.1.0/NeteaseMusicCacheDecoder-3.1.0-win.zip)
+
+> [Mac最新版本下载](https://github.com/lchloride/NeteaseMusicCacheDecoder/releases/download/v3.1.0/NeteaseMusicCacheDecoder-3.1.0-mac.zip)
+
+下载后解压压缩包，运行可执行文件(.exe或Application)即可。
+
+- **【不再维护】** Windows图形化 v2.0_winmfc(更新于 东部标准时间 2017年12月23日) 
 
 > [文档地址](https://github.com/lchloride/NeteaseMusicCacheDecode/blob/master/gui/Windows_MFC/readme.md)
 
@@ -34,7 +48,7 @@
 
 - [x] 网页版，最大限度满足各种系统与设备(Mac, Ubuntu, Android, iOS等等)
 
-- Qt图形化界面
+- [x] Electron图形化界面
 
 - ~~Python图形化界面，以满足MacOSX和Ubuntu等\*nix系统(已放弃)~~
 

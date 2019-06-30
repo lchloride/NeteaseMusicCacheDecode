@@ -8,12 +8,26 @@
 
 - Provide multiple implementations under different programming languages
 
+- **Lastest desktop version supports Windows and macOS and redesigns for better and more convenient usage.**
+
 - **Latest version of Web provides feature that obtaining meta data such as artists, album and cover image by music ID and write into the file**
 
 - **This project is for techniques, I recommented to support genuine music.**
 
 
 ## Developed Versions
+
+- Desktop App for Windows&macOS: v3.1.0 beta(Built on June 30, 2019 CST)
+
+> [Project Link](https://github.com/lchloride/NeteaseMusicCacheDecoder)
+
+> [References(Chinese simplified)](https://github.com/lchloride/NeteaseMusicCacheDecoder/blob/master/readme.md)
+
+> [Download lastest version for Windows](https://github.com/lchloride/NeteaseMusicCacheDecoder/releases/download/v3.1.0/NeteaseMusicCacheDecoder-3.1.0-win.zip)
+
+> [Download lastest version for macOS](https://github.com/lchloride/NeteaseMusicCacheDecoder/releases/download/v3.1.0/NeteaseMusicCacheDecoder-3.1.0-mac.zip)
+
+Simply run executable file(such as .exe or Application) after unzipping the downloaded zip file.
 
 - MFC(with GUI) for Windows: v2.0_winmfc(Built on December 23, 2017 EST)
 
